@@ -118,6 +118,12 @@ are not ruled out by the language specification.
 
 (make-variable-buffer-local 'scala-indent:effective-run-on-strategy)
 
+(defcustom scala-indent:delete-trailing-whitespace t
+  "When non-nil, trailing whitespaces will be removed on indentation."
+  :type 'boolean
+  :safe #'booleanp
+  :group 'scala)
+
 (defcustom scala-indent:add-space-for-scaladoc-asterisk t
   "When non-nil, a space will be added after a scaladoc asterisk,
 when it is added to an empty line."
@@ -801,7 +807,8 @@ strings"
       (scala-indent:reset-effective-run-on-strategy)))
 ;  (message "run-on-strategy is %s" (scala-indent:run-on-strategy))
   (scala-indent:indent-line-to (scala-indent:calculate-indent-for-line))
-  (scala-lib:delete-trailing-whitespace)
+  (when scala-indent:delete-trailing-whitespace
+    (scala-lib:delete-trailing-whitespace))
   (setq scala-indent:previous-indent-pos
         (save-excursion
           (beginning-of-line)
