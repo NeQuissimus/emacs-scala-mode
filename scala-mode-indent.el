@@ -118,7 +118,7 @@ are not ruled out by the language specification.
 
 (make-variable-buffer-local 'scala-indent:effective-run-on-strategy)
 
-(defcustom scala-indent:delete-trailing-whitespace t
+(defcustom scala-indent:delete-trailing-whitespace nil
   "When non-nil, trailing whitespaces will be removed on indentation."
   :type 'boolean
   :safe #'booleanp
